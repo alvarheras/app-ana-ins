@@ -1,27 +1,149 @@
-<ion-header>
-  <ion-toolbar color="primary">
+<ion-header *ngIf='userReady'>
+  <ion-toolbar>
     <ion-title>
-      User Details
+      NameApp
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content *ngIf='userReady'>
-  <ion-card>
-    <img [src]="user.picture"/>
-    <ion-card-content>
-      <ion-card-title>
-        Welcome {{user.name}}!
-        </ion-card-title>
-      <p>
-        Your gender is: {{user.gender}}
-      </p>
-    </ion-card-content>
+<ion-content *ngIf='userReady' class="card-background-page">
+
+  <ion-card class="card-content">
+    <img [src]="user.profile_picture_url" style="border-radius:50%;width:200px;height:200px;margin:0 auto;"/>
+    <div class="card-title">{{user.username}}</div>
+    <div class="card-subtitle">{{user.followers_count}} Followes</div>
   </ion-card>
+
   <ion-row>
+
+  <ion-card-header class="titulo">
+    <h2>
+      Impressionss
+      <button ion-button item-end icon-left color="light" class="button-ver-mas" (click)="reportinThisImpressions()">
+          +
+      </button>
+    </h2>
+  </ion-card-header>
+
+
+    <ion-col col-6 class="columnas">
+      <ion-slides>
+        <ion-slide *ngFor="let impresionesDia of userImpresions ; index as i">
+          <h1 class="title-count">
+            {{impresionesDia.value}} 
+            <!-- [ngClass]="[impresionesDia.diference =< 0 ? 'espe' : 'espe']" --> 
+            <span [ngClass]="{ 'colorRed': impresionesDia.diference <= 0 }">
+              <span class="masPositive">+</span>{{impresionesDia.diference}}
+            </span>
+          </h1>
+          <p class="description-rate">{{i}} vs {{i+1}} days ago</p>
+          <p class="description-rate">{{impresionesDia.end_time}}</p>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+    <ion-col col-6 class="columnas">
+       <h2 class="mediumAverage">{{mediumImpresions}}</h2>
+       <p class="description-rate">Total of impression in {{userImpresions.length}} days period</p>
+    </ion-col>
+
+    <ion-card-header class="titulo">
+      <h2>Followers
+      <button ion-button item-end icon-left color="light" class="button-ver-mas" (click)="reportinThisFllowersCount()">
+          +
+      </button>
+    </h2>
+    </ion-card-header>
+
+    <ion-col col-6>
+      <ion-slides>
+        <ion-slide *ngFor="let FllowersCount of userFllowersCount; index as i">
+          <h1 class="title-count">
+            {{FllowersCount.value}} 
+            <span [ngClass]="{ 'colorRed': FllowersCount.diference <= 0 }">
+              <span class="masPositive">+</span>{{FllowersCount.diference}}
+            </span>
+          </h1>
+          <p class="description-rate">{{i}} vs {{i+1}} days ago</p>
+          <p class="description-rate">{{FllowersCount.end_time}}</p>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+    <ion-col col-6>
+      <h2 class="mediumAverage">{{mediumFllowersCount}}</h2>
+      <p class="description-rate">Total of followers gained in {{userFllowersCount.length}} days period</p>
+    </ion-col>
+
+    <ion-card-header class="titulo">
+      <h2>User profile Views
+      <button ion-button item-end icon-left color="light" class="button-ver-mas" (click)="reportinThisProfile_views()">
+          +
+      </button>
+      </h2>
+    </ion-card-header>
+
+    <ion-col col-6>
+      <ion-slides>
+        <ion-slide *ngFor="let Profile_views of userProfile_views; index as i">
+          <h1 class="title-count">
+            {{Profile_views.value}} 
+            <span [ngClass]="{ 'colorRed': Profile_views.diference <= 0 }">
+              <span class="masPositive">+</span>{{Profile_views.diference}}
+            </span>
+          </h1>
+          <p class="description-rate">{{i}} vs {{i+1}} days ago</p>
+          <p class="description-rate">{{Profile_views.end_time}}</p>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+    <ion-col col-6>
+        <h2 class="mediumAverage">{{mediumProfile_views}}</h2>
+        <p class="description-rate">Total of impression in {{userProfile_views.length}} days period</p>
+    </ion-col>
+
+    <ion-card-header class="titulo">
+      <h2>Website Clicks
+      <button ion-button item-end icon-left color="light" class="button-ver-mas" (click)="reportinThisWebsite_clicks()">
+          +
+      </button>
+      </h2>
+    </ion-card-header>
+
+
+    <ion-col col-6>
+      <ion-slides>
+        <ion-slide *ngFor="let Website_clicks of userWebsite_clicks; index as i">
+          <h1 class="title-count">
+            {{Website_clicks.value}} 
+             <span [ngClass]="{ 'colorRed': Website_clicks.diference <= 0 }">
+              <span class="masPositive">+</span>{{Website_clicks.diference}}
+            </span>
+          </h1>
+          <p class="description-rate">{{i}} vs {{i+1}} days ago</p>
+          <p class="description-rate">{{Website_clicks.end_time}}</p>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+    <ion-col col-6>
+      <h2 class="mediumAverage">{{mediumWebsite_clicks}}</h2>
+      <p class="description-rate">Total of impression in {{userWebsite_clicks.length}} days period</p>
+    </ion-col>
+
+    <!--
+    <ion-col col-6>
+      <h1>{{user.website}}</h1>
+    </ion-col>
+
     <ion-col>
       <button ion-button block (click)="doFbLogout()">Logout</button>
     </ion-col>
+  -->
+
   </ion-row>
+
 </ion-content>

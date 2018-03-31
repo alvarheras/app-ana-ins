@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Facebook } from '@ionic-native/facebook';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { NavController } from 'ionic-angular';
+import { LoginBusinessPage } from '../login-business/login-business';
 import { UserPage } from '../user/user';
 
 @Component({
@@ -9,6 +10,7 @@ import { UserPage } from '../user/user';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+
   FB_APP_ID: number = 396293507493715;
 
   constructor(
@@ -16,8 +18,30 @@ export class LoginPage {
     public fb: Facebook,
     public nativeStorage: NativeStorage
     ) {
-    this.fb.browserInit(this.FB_APP_ID, "v2.8");
+    this.fb.browserInit(this.FB_APP_ID, "v2.12");
   }
+
+
+  ionViewCanEnter() {
+    /*
+    let nav = this.navCtrl;
+
+    this.nativeStorage.getItem('id_page_bussinnes')
+    .then((data) => {
+      if(data!=="") {
+        // habria que chekear el token aqui
+        nav.push(UserPage);
+      } else {
+        
+      }
+    }, (error) => {
+      alert(error);
+      console.log(error);
+    });
+    */
+
+  }
+
 
   doFbLogin() {
 
@@ -25,8 +49,55 @@ export class LoginPage {
     let nav = this.navCtrl;
     
     //the permissions your facebook app needs from the user
-    permissions = ["public_profile","user_friends","manage_pages"];
+    //permissions = ["public_profile,manage_pages,instagram_basic,instagram_manage_insights"];
+    //permissions = ["public_profile,manage_pages,instagram_basic,instagram_manage_insights"];
+    this.fb.login(["public_profile"])
+    .then((response) => {
 
+        //alert(JSON.stringify(response));
+        let userId = response.authResponse.userID;
+        let tokenUser = response.authResponse.accessToken;
+        let expiredin = response.authResponse.expiresIn;
+
+        //double authenticatiuon
+        /*
+        let params = new Array<string>();
+        this.fb.login(["manage_pages,pages_show_list,instagram_basic,instagram_manage_insights"])
+        .then((response) => {
+          alert(JSON.stringify(response));
+        },(error) => {
+          alert(JSON.stringify(error));
+          console.log(error);
+        })*/
+
+        let params = new Array<string>();
+        this.fb.api("/me?fields=name", params)
+        .then((user) => {
+          user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+          this.nativeStorage.setItem('user', // despues de acceder por nlocastrage se puede controlar con then or error
+          {
+            name: user.name,
+            picture: user.picture,
+            userid: userId,
+            tokenUser: tokenUser,
+            expiredin: expiredin
+          })
+          nav.push(LoginBusinessPage);
+        },(error) => {
+          alert(JSON.stringify(error));
+          console.log(error);
+        })
+       
+
+    }, (error) => {
+      alert(error);
+      console.log(error);
+    });
+
+  } // fin Class LoginPage
+
+
+}
     // login style 
 
     /*
@@ -55,37 +126,4 @@ export class LoginPage {
         }
       }
     */
-    this.fb.login(permissions)
-    .then((response) => {
-
-      let userId = response.authResponse.userID;
-      let params = new Array<string>();
-
-      //Getting name and gender properties
-      this.fb.api("/me?fields=name,gender", params)
-      .then((user) => {
-
-        user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
-
-        this.nativeStorage.setItem('user', // despues de acceder por nlocastrage se puede controlar con then or error
-        {
-          name: user.name,
-          gender: user.gender,
-          picture: user.picture,
-          userid: userId
-        })
-        .then(() => {
-          nav.push(UserPage);
-        },(error) => {
-          console.log(error);
-        })
-
-      });
-
-    }, (error) => {
-      console.log(error);
-    });
-
-  } // fin de doFbLogin()
-} // fin Class LoginPage
  

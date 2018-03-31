@@ -7,23 +7,33 @@ import { SplashScreen} from "@ionic-native/splash-screen";
 import { StatusBar} from "@ionic-native/status-bar";
 import { LoginPage } from '../pages/login/login';
 import { UserPage } from '../pages/user/user';
+import { LoginBusinessPage } from '../pages/login-business/login-business';
+import { ChartReportPage } from '../pages/chart-report/chart-report';
 import { BrowserModule } from '@angular/platform-browser';
+import { ChartsModule } from 'ng2-charts';
+import { MomentModule } from 'angular2-moment/moment.module';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    UserPage
+    UserPage,
+    LoginBusinessPage,
+    ChartReportPage
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
+    MomentModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
-    UserPage
+    UserPage,
+    LoginBusinessPage,
+    ChartReportPage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,54 @@
+page-login-business {
+
+	 .login-content{
+    background-color: white;
+  }
+
+  img {
+    margin:0 auto;
+    border-radius:50%;
+  }
+ 
+
+
+  .label-logo{
+    color: black;
+    font-size: 290%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .label-description{
+    color: black;
+    font-size: 130%;
+    text-align: center;
+  }
+
+  .top-row {
+    height: 80%;
+  }
+
+  .bottom-row{
+    height: 20%;
+
+  }
+}
+.login-content{
+  .item-page{
+    font-size:1.3em;
+    background-color:transparent !important;
+    color:black;
+  }
+  ion-item{
+    background-color:red;
+  }
+.lista-paginas{
+  padding-left:0px;
+  padding-right:0px;
+  width:95%;
+}
+  .info{
+  font-size:1.6em !important;
+  }
+}

@@ -5,6 +5,8 @@ import { SplashScreen} from "@ionic-native/splash-screen";
 import { StatusBar} from "@ionic-native/status-bar";
 import { LoginPage } from '../pages/login/login';
 import { UserPage } from '../pages/user/user';
+import { LoginBusinessPage } from '../pages/login-business/login-business';
+import { ChartReportPage } from '../pages/chart-report/chart-report';
 
 // aqui en tempplate se puede crear un template aparte de html y agregar ahi
 // aqui podemos especificarle un html nuevo
@@ -33,15 +35,19 @@ export class MyApp {
       // Here we will check if the user is already logged in
       // because we don't want to ask users to log in each time they open the app
       let env = this;
-      this.nativeStorage.getItem('user')
-      .then( function (data) {
-        //si puede obtener la información de local de el objecto usuario que ha creado anres continua a 
-        env.nav.push(UserPage);
-        env.splashScreen.hide();
-      }, function (error) {
-        // si no puede obtener lo datos lo manda al login y cierra la ventana 
-        env.nav.push(LoginPage);
-        env.splashScreen.hide();
+      this.nativeStorage.getItem('id_page_bussinnes')
+      .then((data) => {
+        if(data!=="") {
+          // habria que chekear el token aqui
+          env.nav.push(UserPage);
+          env.splashScreen.hide();
+        } else {
+          env.nav.push(LoginPage);
+          env.splashScreen.hide();
+        }
+      }, (error) => {
+          env.nav.push(LoginPage);
+          env.splashScreen.hide();
       });
 
       this.statusBar.styleDefault(); // carga los estilos por defecto del theme

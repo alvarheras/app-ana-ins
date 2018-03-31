@@ -1,0 +1,46 @@
+page-chart-report {
+
+}
+.reporting{
+	canvas {
+		position:relative;
+		left:-15px;
+		margin-top:60px;
+	}
+
+	.title-count span {
+    font-size:0.4em !important;
+    color:green;
+    position: relative;
+    top:-2px;
+  }
+
+  .masPositive{
+      font-size:0.7em !important;
+      position:relative;
+      top:0px;
+  }
+
+  .colorGreen{
+    color:green !important;
+  }
+
+  h2.mediumAverage{
+    text-align:center;
+    margin-top:10px;
+  }
+
+
+  .colorRed {
+    color:red !important;
+  }
+
+  .colorRed > .masPositive{
+    display:none;
+  }
+  .description-rate{
+    text-align:center;
+    font-size:13px;
+  }
+
+}

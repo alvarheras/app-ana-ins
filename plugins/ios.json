@@ -1,0 +1,20 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionic.facebookapp"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "396293507493715",
+            "APP_NAME": "app ionic2",
+            "PACKAGE_NAME": "com.ionic.facebookapp"
+        }
+    },
+    "dependent_plugins": {}
+}

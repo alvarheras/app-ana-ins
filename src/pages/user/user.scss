@@ -1,0 +1,145 @@
+page-user {
+
+  h2.mediumAverage{
+    text-align:center;
+
+  }
+  .description-rate{
+    text-align:center;
+    font-size:13px;
+  }
+  .titulo{
+    width:100%;
+  }
+	 .login-content{
+    background-color: #FF6347;
+  }
+  .label-logo{
+    color: white;
+    font-size: 300%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 50px;
+  }
+  .label-description{
+    color: white;
+    font-size: 130%;
+    text-align: center;
+  }
+  .top-row {
+    height: 0%;
+  }
+  .text-align-center{
+    text-align:center;
+  }
+  .bottom-row{
+    height: 20%;
+
+  }
+}
+.card-background-page {
+  .titulo h2{
+    font-size:1.2em !important;
+    padding-left:10px;
+    padding-right:9px;
+  }
+  .mediumAverage{
+    margin-top:25px !important;
+    font-size:1.2em !important;
+  }
+  .title-count{
+    font-size:1.2em !important;
+  }
+  .scroll-content {
+    margin-top: 0 !important;
+  }
+
+  .title-count span {
+    font-size:0.5em !important;
+    color:green;
+    position: relative;
+    top:-2px;
+  }
+  .columnas{
+    padding-top:0px;
+    padding-bottom:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+  }
+  .masPositive{
+      font-size:0.7em !important;
+      position:relative;
+      top:0px;
+  }
+
+  .colorGreen{
+    color:green !important;
+  }
+
+  .colorRed {
+    color:red !important;
+  }
+
+  .colorRed > .masPositive{
+    display:none;
+  }
+
+  ion-card-header{
+    width:100%;
+  }
+
+  ion-button{}
+  .positive{color:green;}
+
+  .negative{color:red;}
+
+  .button-ver-mas{
+    float:right;
+    margin-top:-7px;
+    font-size:0.8em;
+  }
+  ion-item{
+    width:100%;
+    font-size:1.3em;
+  }
+
+  ion-card {
+    position: relative;
+    text-align: center;
+    margin-top:90px;
+  }
+  .colorRed{
+    color:red;
+  }
+    .color-green{
+  color:green;
+  }
+
+  .diferente-value-css {
+    font-size:0.5em !important;
+  }
+
+  .card-content{
+    box-shadow: 0px 0px 0px 0px !important;
+    border-radius:0px !important;
+  }
+
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 1em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 0.85em;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    color: #fff;
+  }
+
+}
